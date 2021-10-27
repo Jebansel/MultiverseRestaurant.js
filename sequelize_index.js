@@ -45,7 +45,7 @@ const {
 
     const TheGreatCow = await Restaurant.create({
         name: 'The Great Cow',
-        imagelink: '',
+        imagelink: 'https://i2-prod.derbytelegraph.co.uk/incoming/article5869593.ece/ALTERNATES/s615/0_TB_BM_300518cow101.jpg',
       });
 
   
@@ -69,8 +69,11 @@ const {
     // add the associations (foreign keys) (these are sequelize specific functions)
     await PizzaRestaurant.addMenu(PizzaRestaurantMenu);
     await PizzaRestaurantMenu.addMenuItem(PizzaRestaurantMenuItem);
+    await TheGreatCow.addMenu(GreatCowMenu);
+    await GreatCowMenu.addMenuItems(GreatCowMenuItems);
   
-    return [PizzaRestaurant];
+    return [PizzaRestaurant, TheGreatCow];
+    
   }
   
   /**
@@ -79,6 +82,7 @@ const {
    */
   async function runQueries(objects) {
     [PizzaRestaurant] = objects; // objects[0], objects[1], objects[2]
+    [TheGreatCow] = objects;
   
     const restaurants = await Restaurant.findAll({}); // get all restaurants
   
@@ -91,7 +95,7 @@ const {
     const menus = await PizzaRestaurant.getMenus();
   
     // --> get menu items that belong to a menu here
-
+    const menuItem = await GreatCowMenu.getMenuItems();
 
     // --> write tests in jest to prove your restaurant CRUD functions work
 

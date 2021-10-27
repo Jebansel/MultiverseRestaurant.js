@@ -1,16 +1,25 @@
 {
-    "name": "sequelize",
-    "version": "1.0.0",
-    "description": "",
-    "main": "models.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "sequelize": "^6.8.0",
-        "sqlite3": "^5.0.2"
-    }
+  "name": "sequelize",
+  "version": "1.0.0",
+  "main": "models.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^27.3.1",
+    "sequelize": "^6.8.0",
+    "sqlite3": "^5.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jebansel/MultiverseRestaurant.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Jebansel/MultiverseRestaurant.js/issues"
+  },
+  "homepage": "https://github.com/Jebansel/MultiverseRestaurant.js#readme",
+  "description": ""
 }

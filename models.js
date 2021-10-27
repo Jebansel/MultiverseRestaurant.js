@@ -12,8 +12,7 @@ const restaurantModel = {
     allowNull: false,
   },
 };
-// hello
-// please help me
+
 
 const menuModel = {
   title: {
