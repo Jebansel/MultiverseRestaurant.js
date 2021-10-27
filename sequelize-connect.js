@@ -5,7 +5,7 @@ const {
   restaurantModel,
   menuModel,
   menuItemModel,
-} = require('./models/models');
+} = require('./models');
 
 // connects to the db on localhost
 const connection = new Sequelize('db', 'user', 'pass', {
