@@ -45,9 +45,9 @@ app.delete("/api/restaurants/:id", async (req, res) => {
 
 
 // 2. create an endpoint that will update a restaurant by ID (HTTP Method = put)
-app.update("/api/restaurants/:id", async (req, res) =>{
+app.put("/api/restaurants/:id", async (req, res) =>{
   const toUpdate = await Restaurant.findByPk(req.params.id)
-  await toUpdate.update()
+  await toUpdate.update(req.body)
   res.status(202).send(toUpdate)
 });
 // 3. create a suite of menu and menu item routes that will CRUD each resource
