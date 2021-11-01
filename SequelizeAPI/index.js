@@ -11,49 +11,151 @@ const port = 3002;
 // support req.body parsing
 app.use(express.json());
 
-app.post("/api/restaurants", async (req, res) => {
-  try {
-    // create a row in the database using sequelize create method
-    const restaurant = await Restaurant.create(req.body);
+// Restaurant CRUD:
 
-    // 201 = created a resource
-    res.status(201).send(restaurant);
-  } catch (e) {
-    res.status(400).send(e.message);
-  }
-});
+app
+  .post("/api/restaurants", async (req, res) => {
+    try {
+      // create a row in the database using sequelize create method
+      const restaurant = await Restaurant.create(req.body);
 
-app.get("/api/restaurants", async (req, res) => {
-  try {
-    // create a row in the database using sequelize create method
-    const restaurants = await Restaurant.findAll({});
+      // 201 = created a resource
+      res.status(201).send(restaurant);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  })
+  .get("/api/restaurants", async (req, res) => {
+    try {
+      // create a row in the database using sequelize create method
+      const restaurants = await Restaurant.findAll({});
 
-    // 200 = success
-    res.status(200).send(restaurants);
-  } catch (e) {
-    res.status(400).send(e.message);
-  }
-});
+      // 200 = success
+      res.status(200).send(restaurants);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  })
+  .delete("/api/restaurants/:id", async (req, res) => {
+    const toDelete = await Restaurant.findByPk(req.params.id);
+    await toDelete.destroy();
+    res.status(201).send(toDelete);
+  })
+  // 2. create an endpoint that will update a restaurant by ID (HTTP Method = put)
+  .put("/api/restaurants/:id", async (req, res) => {
+    const toUpdate = await Restaurant.findByPk(req.params.id);
+    await toUpdate.update(req.body);
+    res.status(202).send(toUpdate);
+  })
+  .post("/api/restaurants", async (req, res) => {
+    try {
+      // create a row in the database using sequelize create method
+      const restaurant = await Restaurant.create(req.body);
 
-app.delete("/api/restaurants/:id", async (req, res) => {
+      // 201 = created a resource
+      res.status(201).send(restaurant);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  });
 
-  const toDelete = await Restaurant.findByPk(req.params.id)
-  await toDelete.destroy()
-  res.status(201).send(toDelete)
-});
+// Menu CRUD:
 
+app
+  .post("/api/menu", async (req, res) => {
+    try {
+      // create a row in the database using sequelize create method
+      const menu = await Menu.create(req.body);
 
+      // 201 = created a resource
+      res.status(201).send(menu);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  })
+  .get("/api/menu", async (req, res) => {
+    try {
+      // create a row in the database using sequelize create method
+      const menu = await Menu.findAll({});
 
-// 2. create an endpoint that will update a restaurant by ID (HTTP Method = put)
-app.put("/api/restaurants/:id", async (req, res) =>{
-  const toUpdate = await Restaurant.findByPk(req.params.id)
-  await toUpdate.update(req.body)
-  res.status(202).send(toUpdate)
-});
-// 3. create a suite of menu and menu item routes that will CRUD each resource
+      // 200 = success
+      res.status(200).send(menu);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  })
+  .delete("/api/menu/:id", async (req, res) => {
+    const toDelete = await Menu.findByPk(req.params.id);
+    await toDelete.destroy();
+    res.status(201).send(toDelete);
+  })
+  .put("/api/menu/:id", async (req, res) => {
+    const toUpdate = await Menu.findByPk(req.params.id);
+    await toUpdate.update(req.body);
+    res.status(202).send(toUpdate);
+  })
+  .post("/api/menu", async (req, res) => {
+    try {
+      // create a row in the database using sequelize create method
+      const menu = await Menu.create(req.body);
+
+      // 201 = created a resource
+      res.status(201).send(menu);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  });
+
+// Menu Items CRUD:
+
+app
+  .post("/api/menuItems", async (req, res) => {
+    try {
+      // create a row in the database using sequelize create method
+      const menuItems = await MenuItem.create(req.body);
+
+      // 201 = created a resource
+      res.status(201).send(menuItems);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  })
+  .get("/api/menuItems", async (req, res) => {
+    try {
+      // create a row in the database using sequelize create method
+      const menuItems = await MenuItem.findAll({});
+
+      // 200 = success
+      res.status(200).send(menuItems);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  })
+  .delete("/api/menuItems/:id", async (req, res) => {
+    const toDelete = await MenuItem.findByPk(req.params.id);
+    await toDelete.destroy();
+    res.status(201).send(toDelete);
+  })
+  // 2. create an endpoint that will update a restaurant by ID (HTTP Method = put)
+  .put("/api/menuItems/:id", async (req, res) => {
+    const toUpdate = await MenuItem.findByPk(req.params.id);
+    await toUpdate.update(req.body);
+    res.status(202).send(toUpdate);
+  })
+  .post("/api/menuItems", async (req, res) => {
+    try {
+      // create a row in the database using sequelize create method
+      const menuItems = await MenuItem.create(req.body);
+
+      // 201 = created a resource
+      res.status(201).send(menuItems);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  });
 
 // 4. find a way to relate the menu items to the menu and the menu to the restaurant
-
+//every time i submit a menu, i will know it belongs to a restaurant
 // 5. use Sequelize validation to validate the data being sent (you'll do this in the model)
 
 /**
