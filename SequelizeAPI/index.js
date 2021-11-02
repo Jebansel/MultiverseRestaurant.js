@@ -155,7 +155,7 @@ app
   });
 
 // 4. find a way to relate the menu items to the menu and the menu to the restaurant
-//every time i submit a menu, i will know it belongs to a restaurant
+//every time i submit a menu, I will know it belongs to a restaurant
 // 5. use Sequelize validation to validate the data being sent (you'll do this in the model)
 
 /**
