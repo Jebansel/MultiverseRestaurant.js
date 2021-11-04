@@ -1,0 +1,22 @@
+<h2>
+    Update a restaurants menu
+</h2>
+
+
+<form id='updateMenuForm'>
+    <input name='menuId' id='menuId' type='hidden' value='{{menuId}}' />
+    <div>
+        <label for="name">Name of Menu:</label><br>
+        <input type="text" name='name' id="name" required />
+    </div>
+
+    <button type="submit" class='button--anchor'>
+        Sumbit
+    </button>
+</form>
+
+<script>
+    const updateMenuForm = document.querySelector("#updateMenuForm");
+    updateMenuForm.addEventListener("submit", updateRestaurantMenu);
+    console.log(updateMenuForm);
+</script>

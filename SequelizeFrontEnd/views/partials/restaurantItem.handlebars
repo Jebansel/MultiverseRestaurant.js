@@ -10,14 +10,16 @@
     <a href="/restaurants/{{this.id}}/edit" data-id="{{this.id}}" class="anchor--button">
       Edit
     </a>
-    <button
-    type="button"
-    data-id="{{this.id}}"
-    onClick='deleteRestaurant("{{this.id}}")'
-    >
-      Delete Restaurant Item
+    
+    <button type="button" data-id="{{this.id}}" onClick='deleteRestaurant("{{this.id}}")'>
+      Delete Restaurant
     </button>
-
+    <a href="/restaurants/{{this.id}}/view" data-id="{{this.id}}" class="anchor--button">
+      View Menus
+    </a>
+    <a href="/restaurants/{{this.id}}/add" data-id="{{this.id}}" class="anchor--button">
+      Add new Menu
+    </a>
 
   </div>
 </div>
