@@ -36,11 +36,23 @@ app
       res.status(400).send(e.message);
     }
   })
+  .get("/api/restaurants/:id", async (req, res) => {
+    try {
+      // returning one restaurant 
+      const restaurant = await Restaurant.findByPk(req.params.id);
+
+      // 200 = success
+      res.status(200).send(restaurant);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  })
   .delete("/api/restaurants/:id", async (req, res) => {
     const toDelete = await Restaurant.findByPk(req.params.id);
     await toDelete.destroy();
     res.status(201).send(toDelete);
   })
+  
   // 2. create an endpoint that will update a restaurant by ID (HTTP Method = put)
   .put("/api/restaurants/:id", async (req, res) => {
     const toUpdate = await Restaurant.findByPk(req.params.id);
@@ -84,6 +96,17 @@ app
       res.status(400).send(e.message);
     }
   })
+  // .get("/api/menu/:id", async (req, res) => {
+  //   try {
+  //     // returning one restaurant 
+  //     const menu = await Menu.findByPk(req.params.id);
+
+  //     // 200 = success
+  //     res.status(200).send(menu);
+  //   } catch (e) {
+  //     res.status(400).send(e.message);
+  //   }
+  // })
   .delete("/api/menu/:id", async (req, res) => {
     const toDelete = await Menu.findByPk(req.params.id);
     await toDelete.destroy();
