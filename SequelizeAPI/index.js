@@ -10,6 +10,8 @@ const app = express();
 const port = 3002;
 // support req.body parsing
 app.use(express.json());
+const cors = require('cors');
+app.use(cors());
 
 // Restaurant CRUD:
 
@@ -50,7 +52,7 @@ app
   .delete("/api/restaurants/:id", async (req, res) => {
     const toDelete = await Restaurant.findByPk(req.params.id);
     await toDelete.destroy();
-    res.status(201).send(toDelete);
+    res.status(200).send(toDelete);
   })
   
   // 2. create an endpoint that will update a restaurant by ID (HTTP Method = put)
@@ -110,7 +112,7 @@ app
   .delete("/api/menu/:id", async (req, res) => {
     const toDelete = await Menu.findByPk(req.params.id);
     await toDelete.destroy();
-    res.status(201).send(toDelete);
+    res.status(200).send(toDelete);
   })
   .put("/api/menu/:id", async (req, res) => {
     const toUpdate = await Menu.findByPk(req.params.id);
@@ -157,7 +159,7 @@ app
   .delete("/api/menuItems/:id", async (req, res) => {
     const toDelete = await MenuItem.findByPk(req.params.id);
     await toDelete.destroy();
-    res.status(201).send(toDelete);
+    res.status(200).send(toDelete);
   })
   // 2. create an endpoint that will update a restaurant by ID (HTTP Method = put)
   .put("/api/menuItems/:id", async (req, res) => {
@@ -197,3 +199,6 @@ start()
   .catch((e) => console.log(`Caught error: ${e}`));
 
 app.listen(port, () => console.log(`Express server running on port ${port}`));
+
+
+

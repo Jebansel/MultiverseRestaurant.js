@@ -59,18 +59,11 @@ Router
     }
   });
 
+Router.get('/:id/edit', (req, res) => { // render the update form
 
-  Router.get("/delete", async (req, res, next) => {
-    try {
-      res.render("deleteRestaurant");
-    } catch (error) {
-      return next(error);
-    }
-  })  
-  
-  
-  .delete("/:id", async (req, res, next) => { // Deletes a restaurant based on its id
+  res.render("updateRestaurant", {restaurantId: req.params.id});
+});
 
-  });
+
 
 module.exports = Router;

@@ -1,21 +1,23 @@
 <div class="restaurant">
+  {{!-- <div> Welcome! You can view all existing restaurants here! </div> --}}
+  <br>
   <h3>{{this.name}}</h3>
   <img src="{{this.imagelink}}" alt="{{this.name}}" />
   <div class="promo-blocks__actions">
     <a href="/restaurants/{{this.id}}" class="anchor--button">
       View Restaurant
     </a>
-    <a
-      href="/restaurants/{{this.id}}/edit"
-      data-id="{{this.id}}"
-      class="anchor--button"
-    >
+    <a href="/restaurants/{{this.id}}/edit" data-id="{{this.id}}" class="anchor--button">
       Edit
     </a>
-    <button type="button" data-id="{{this.id}}">
-      Delete Restaurant
+    <button
+    type="button"
+    data-id="{{this.id}}"
+    onClick='deleteRestaurant("{{this.id}}")'
+    >
+      Delete Restaurant Item
     </button>
-    
+
 
   </div>
 </div>
