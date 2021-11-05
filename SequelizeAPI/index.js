@@ -44,6 +44,8 @@ app
         where: {
           id: req.params.id,
         },
+        // include: [Menu]
+
         include: {
           model: Menu,
           include: {
@@ -51,6 +53,8 @@ app
           },
         },
       });
+      res.status(200).send(restaurants)
+
     } catch (e) {
       res.status(400).send(e.message);
     }

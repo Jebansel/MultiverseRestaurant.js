@@ -34,7 +34,7 @@ Router.post("/", async (req, res, next) => {
   });
 
 // Adds a New Menu
-  Router.post("/:id/add", async (req, res, next) => {
+  Router.post("/", async (req, res, next) => {
     try {
       await fetch(url, {
         method: "POST",
@@ -49,22 +49,22 @@ Router.post("/", async (req, res, next) => {
   })
     .get("/:id/add", async (req, res, next) => {
       try {
-        const response = await fetch(url + `/${req.params.id}`);
+        const response = await fetch(`http://localhost:3002/api/restaurants/${req.params.id}`);
         const restaurants = await response.json();
         res.render("newMenu", restaurants);
       } catch (error) {
         return next(error);
       }
-    })
-    .get("/:id", async (req, res, next) => {
-      try {
-        const response = await fetch(url);
-        const restaurants = await response.json();
-        res.render("restaurants", { restaurants });
-      } catch (error) {
-        return next(error);
-      }
     });
+    // .get("/", async (req, res, next) => {
+    //   try {
+    //     const response = await fetch(url);
+    //     const restaurants = await response.json();
+    //     res.render("restaurants", { restaurants });
+    //   } catch (error) {
+    //     return next(error);
+    //   }
+    // });
 // gets all restaurants
 Router
   .get("/", async (req, res, next) => {
