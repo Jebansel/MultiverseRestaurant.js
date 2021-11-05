@@ -34,13 +34,14 @@ Router.post("/", async (req, res, next) => {
   });
 
 // Adds a New Menu
-  Router.post("/", async (req, res, next) => {
+  Router.post("/:id/add", async (req, res, next) => {
     try {
       await fetch(url, {
         method: "POST",
         body: JSON.stringify(req.body),
         headers: { "Content-Type": "application/json" },
       });
+      console.log(req.body)
       res.redirect("/restaurants");
     } catch (error) {
       return next(error);
@@ -48,7 +49,9 @@ Router.post("/", async (req, res, next) => {
   })
     .get("/:id/add", async (req, res, next) => {
       try {
-        res.render("newMenu");
+        const response = await fetch(url + `/${req.params.id}`);
+        const restaurants = await response.json();
+        res.render("newMenu", restaurants);
       } catch (error) {
         return next(error);
       }

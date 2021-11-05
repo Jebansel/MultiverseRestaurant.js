@@ -10,7 +10,7 @@ const app = express();
 const port = 3002;
 // support req.body parsing
 app.use(express.json());
-const cors = require('cors');
+const cors = require("cors");
 app.use(cors());
 
 // Restaurant CRUD:
@@ -40,11 +40,17 @@ app
   })
   .get("/api/restaurants/:id", async (req, res) => {
     try {
-      // returning one restaurant 
-      const restaurant = await Restaurant.findByPk(req.params.id);
-
-      // 200 = success
-      res.status(200).send(restaurant);
+      const restaurants = await Restaurant.findAll({
+        where: {
+          id: req.params.id,
+        },
+        include: {
+          model: Menu,
+          include: {
+            model: MenuItem,
+          },
+        },
+      });
     } catch (e) {
       res.status(400).send(e.message);
     }
@@ -54,7 +60,7 @@ app
     await toDelete.destroy();
     res.status(200).send(toDelete);
   })
-  
+
   // 2. create an endpoint that will update a restaurant by ID (HTTP Method = put)
   .put("/api/restaurants/:id", async (req, res) => {
     const toUpdate = await Restaurant.findByPk(req.params.id);
@@ -100,7 +106,7 @@ app
   })
   // .get("/api/menu/:id", async (req, res) => {
   //   try {
-  //     // returning one restaurant 
+  //     // returning one menu based on its id
   //     const menu = await Menu.findByPk(req.params.id);
 
   //     // 200 = success
@@ -199,6 +205,3 @@ start()
   .catch((e) => console.log(`Caught error: ${e}`));
 
 app.listen(port, () => console.log(`Express server running on port ${port}`));
-
-
-

@@ -5,9 +5,11 @@
     </h2>
 
     <form action="/restaurants" method="POST">
+    <input type="hidden" name="RestaurantId" value="{{restaurants.0.id}}">
+
         <div>
             <label for="nameOfMenu">Name of Menu:</label><br>
-            <input type="text" name='name' id="name" required />
+            <input type="text" name='title' id="title" required />
         </div>
         <button type="submit" class='button--anchor'>
             Sumbit
